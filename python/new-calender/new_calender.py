@@ -1,10 +1,11 @@
 import sys
 
 class NewCalender:
-    def __init__(self, daysInYear, daysInMonth, daysInWeek):
-        self.daysInYear = int(daysInYear)
-        self.daysInMonth = int(daysInMonth)
-        self.daysInWeek = int(daysInWeek)
+    def __init__(self, calenderInfo):
+        daysInYear, daysInMonth, daysInWeek = list(map(int, calenderInfo))
+        self.daysInYear = daysInYear
+        self.daysInMonth = daysInMonth
+        self.daysInWeek = daysInWeek
         self.monthsInYear = self.daysInYear / self.daysInMonth
         self.daysOfTheWeek = [chr(i) for i in range(ord('A'), ord('A')+self.daysInWeek)]
         self.extraYears = []
@@ -37,8 +38,6 @@ class NewCalender:
     def getDayOfTheWeek(self, date):
         year, month, day = list(map(int, date.split('-')))
         self.makeExtraYears(year)
-        print(self.extraYears)
-        print(self.dateIsIncluded(date))
         if self.isVaildMonth() and self.isValidYear() and self.dateIsIncluded(date):
             a = (year - 1) * self.daysInYear
             b = ((month - 1) + len(self.extraYears) ) * self.daysInMonth
@@ -50,8 +49,7 @@ class NewCalender:
 
 def main(argv):
 
-  newCalender = NewCalender(argv[0], argv[1], argv[2])
-  print(argv)
+  newCalender = NewCalender(argv[:-1])
   print(newCalender.getDayOfTheWeek(argv[3]))
 
 if __name__ == '__main__':
