@@ -36,8 +36,9 @@ class NewCalender:
 
     def getDayOfTheWeek(self, date):
         year, month, day = list(map(int, date.split('-')))
-        self.makeExtraYears(year)
+        # self.makeExtraYears(year)
         if self.isVaildMonth() and self.isValidYear() and self.dateIsIncluded(year, month, day):
+            print(self.extraYears)
             passedDaysOfYear = (year - 1) * self.daysInYear
             passedDaysOfMonth = ((month - 1) + len(self.extraYears) ) * self.daysInMonth
             totalPassedDays = passedDaysOfYear + passedDaysOfMonth + day
