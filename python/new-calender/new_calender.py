@@ -25,8 +25,7 @@ class NewCalender:
                 self.extraYears.append(i + 1)
                 totalDay = totalDay - self.daysInMonth
 
-    def dateIsIncluded(self, date):
-        year, month, day = list(map(int, date.split('-')))
+    def dateIsIncluded(self, year, month, day):
         if self.daysInMonth < day:
             return False
         # 閏月のパターン
@@ -38,7 +37,7 @@ class NewCalender:
     def getDayOfTheWeek(self, date):
         year, month, day = list(map(int, date.split('-')))
         self.makeExtraYears(year)
-        if self.isVaildMonth() and self.isValidYear() and self.dateIsIncluded(date):
+        if self.isVaildMonth() and self.isValidYear() and self.dateIsIncluded(year, month, day):
             a = (year - 1) * self.daysInYear
             b = ((month - 1) + len(self.extraYears) ) * self.daysInMonth
             passedDay = a + b + day
