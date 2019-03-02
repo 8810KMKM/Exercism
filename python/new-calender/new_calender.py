@@ -38,10 +38,10 @@ class NewCalender:
         year, month, day = list(map(int, date.split('-')))
         self.makeExtraYears(year)
         if self.isVaildMonth() and self.isValidYear() and self.dateIsIncluded(year, month, day):
-            a = (year - 1) * self.daysInYear
-            b = ((month - 1) + len(self.extraYears) ) * self.daysInMonth
-            passedDay = a + b + day
-            return self.daysOfTheWeek[passedDay % len(self.daysOfTheWeek) - 1]
+            passedDaysOfYear = (year - 1) * self.daysInYear
+            passedDaysOfMonth = ((month - 1) + len(self.extraYears) ) * self.daysInMonth
+            totalPassedDays = passedDaysOfYear + passedDaysOfMonth + day
+            return self.daysOfTheWeek[totalPassedDays % len(self.daysOfTheWeek) - 1]
         else:
             return -1
 
